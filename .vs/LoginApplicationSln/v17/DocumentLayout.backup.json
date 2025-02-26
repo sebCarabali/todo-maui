@@ -1,0 +1,133 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|c:\\users\\sebca\\source\\repos\\loginapplicationsln\\loginapplication\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{616EA789-A4EC-4CF4-82C9-03E6E26487EC}|LoginApplication\\LoginApplication.csproj|solutionrelative:loginapplication\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "LoginApplication\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "LoginApplication\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T03:18:27.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\App.xaml",
+              "RelativeDocumentMoniker": "LoginApplication\\App.xaml",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\App.xaml",
+              "RelativeToolTip": "LoginApplication\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-25T03:12:12.67Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\AppShell.xaml",
+              "RelativeDocumentMoniker": "LoginApplication\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\AppShell.xaml",
+              "RelativeToolTip": "LoginApplication\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-25T03:12:11.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "LoginApplication\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\MauiProgram.cs",
+              "RelativeToolTip": "LoginApplication\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T03:12:10.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Views\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "LoginApplication\\Views\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Views\\MainPage.xaml.cs",
+              "RelativeToolTip": "LoginApplication\\Views\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T03:10:09.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Views\\MainPage.xaml",
+              "RelativeDocumentMoniker": "LoginApplication\\Views\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Views\\MainPage.xaml",
+              "RelativeToolTip": "LoginApplication\\Views\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-25T03:09:56.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Models\\User.cs",
+              "RelativeDocumentMoniker": "LoginApplication\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\sebca\\source\\repos\\LoginApplicationSln\\LoginApplication\\Models\\User.cs",
+              "RelativeToolTip": "LoginApplication\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T03:07:11.441Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
