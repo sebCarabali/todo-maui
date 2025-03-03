@@ -1,0 +1,56 @@
+# Compiled source
+*.dll
+*.exe
+*.obj
+*.pdb
+
+# Folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono auto generated files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folders for .NET MAUI
+node_modules/
+bin/
+obj/
+
+# Visual Studio 2019/2022
+.vs/
+.vscode/
+
+# Rider
+.idea/
+.idea_modules/
+.idea.workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries
+.idea/libraries/
+.idea_modules.xml
+.idea/httpRequests
+.idea/phpUnit.xml
+.idea/pytest.xml
+.idea/mdk/
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Desktop.ini

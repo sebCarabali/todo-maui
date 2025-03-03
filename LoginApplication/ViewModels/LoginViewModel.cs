@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using LoginApplication.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +10,32 @@ using System.Threading.Tasks;
 
 namespace LoginApplication.ViewModels
 {
-    [ObservableObject]
-    public partial class LoginViewModel
+    public partial class LoginViewModel : ObservableObject
     {
         [ObservableProperty]
         private string userName;
         [ObservableProperty]
         private string password;
 
-        [RelayCommand]        
-        private void Login()
+        [ObservableProperty]
+        private bool _isBussy = false;
+        
+        public bool IsNotBussy => !IsBussy;
+        partial void OnIsBussyChanged(bool value)
         {
-            // TODO: Call the authentication service and save the jwt(JSON Web Token) token 
-            Console.WriteLine($"Try to login with {userName} and {password}");
+            OnPropertyChanged(nameof(IsNotBussy));
+        }
+
+        [RelayCommand]        
+        private async void Login()
+        {
+            if (IsBussy) return;
+
+            IsBussy = true;
+            await Task.Delay(3000);
+            IsBussy = false;
+
+            WeakReferenceMessenger.Default.Send(new LoginMessage(true, "Login successful"));
         }
     }
 }

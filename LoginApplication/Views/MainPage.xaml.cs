@@ -1,4 +1,6 @@
-﻿using LoginApplication.ViewModels;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using LoginApplication.Messages;
+using LoginApplication.ViewModels;
 
 namespace LoginApplication.Views
 {
@@ -10,6 +12,14 @@ namespace LoginApplication.Views
         {
             InitializeComponent();
             BindingContext = vm;
+
+            WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlert(m.IsSuccess ? "Success" : "Error", m.Message, "OK");
+                });
+            });
         }
     }
 
