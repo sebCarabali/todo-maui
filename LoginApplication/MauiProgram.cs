@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LoginApplication.Services;
+using LoginApplication.Services.Interfaces;
+using LoginApplication.ViewModels;
+using LoginApplication.Views;
+using Microsoft.Extensions.Logging;
 
 namespace LoginApplication;
 
@@ -19,6 +23,15 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        // Register services
+        builder.Services.AddSingleton<IAuthService, AuthService>();
+
+        // Register view models
+		builder.Services.AddTransient<LoginViewModel>();
+
+        // Register views
+        builder.Services.AddTransient<LoginPage>();
+
+        return builder.Build();
 	}
 }

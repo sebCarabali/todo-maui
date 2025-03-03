@@ -937,3 +937,5 @@ C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-android\stamp\_GenerateJavaStubs.stamp
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-android\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-android\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-android\LoginApplication.sourcelink.json
+C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-android\android\assets\x86_64\Newtonsoft.Json.dll

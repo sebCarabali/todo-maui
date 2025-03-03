@@ -470,3 +470,5 @@ C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Mvvm.dll
+C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Newtonsoft.Json.dll
+C:\Users\sebca\source\repos\LoginApplicationSln\LoginApplication\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\LoginApplication.sourcelink.json

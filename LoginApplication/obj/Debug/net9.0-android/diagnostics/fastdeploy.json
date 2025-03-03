@@ -6,13 +6,13 @@
     "target.prop.ro.product.manufacturer": "Google",
     "target.prop.ro.product.model": "sdk_gphone64_x86_64",
     "target.prop.ro.product.cpu.abi": "x86_64",
-    "deploy.error.code": "",
+    "deploy.error.code": "XA0129",
     "deploy.tool": "xamarin.sync",
-    "deploy.result": "Success",
+    "deploy.result": "Failed",
     "deploy.supports.fastdev": "True",
     "deploy.systemapp": "False",
-    "deploy.duration.ms": "486",
-    "pii.deploy.error": "",
-    "pii.deploy.file": ""
+    "deploy.duration.ms": "50420",
+    "pii.deploy.error": "Error al implementar \u201C{0}\u201D.\nEscriba la propiedad MSBuild \u201CEmbedAssembliesIntoApk\u201D en \u201Ctrue\u201D para deshabilitar la implementaci\u00F3n r\u00E1pida en las p\u00E1ginas de propiedades del proyecto Visual Studio o edite el archivo de proyecto en un editor de texto.",
+    "pii.deploy.file": "files/.__override__/x86_64/Microsoft.VisualBasic.dll"
   }
 }
