@@ -9,6 +9,9 @@ bin/
 obj/
 obj/Debug/
 
+LoginApplication/bin/**
+LoginApplication/obj/**
+
 # User-specific files
 *.user
 *.rsuser
