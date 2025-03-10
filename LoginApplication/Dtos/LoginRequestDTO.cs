@@ -4,11 +4,9 @@ namespace LoginApplication.Dtos
 {
     public class LoginRequestDTO
     {
-        [JsonProperty("id_tipo_identificacion")]
-        public int IdTipoIdentificacion { get; set; }
-        [JsonProperty("identificacion")]
-        public string Identificacion { get; set; }
+        [JsonProperty("correo")]
+        public required string Correo { get; set; }
         [JsonProperty("contrasenia")]
-        public string Contrasenia { get; set; }
+        public required string Contrasenia { get; set; }
     }
 }

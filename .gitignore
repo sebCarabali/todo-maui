@@ -58,3 +58,5 @@ obj/
 Icon?
 ehthumbs.db
 Desktop.ini
+
+.env

@@ -15,9 +15,9 @@ namespace LoginApplication.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string userName;
+        private string _email;
         [ObservableProperty]
-        private string password;
+        private string _password;
 
         [ObservableProperty]
         private bool _isBussy = false;
@@ -43,20 +43,30 @@ namespace LoginApplication.ViewModels
 
             IsBussy = true;
 
-            // create login request object
-            var loginRequest = new LoginRequestDTO
+            try
             {
-                IdTipoIdentificacion = 0, // What values should be here?
-                Identificacion = UserName,
-                Contrasenia = Password
-            };
+                var request = new LoginRequestDTO { Correo = Email, Contrasenia = Password };
+                bool isSuccess = await _authService.LoginAsync(request);
 
-            bool success = await _authService.LoginAsync(loginRequest);
+                if (isSuccess)
+                {
+                    await Shell.Current.GoToAsync("/home");
+                }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+            }
+            catch (HttpRequestException ex)
+            {
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+            }
+            catch (Exception ex)
+            {
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+            }
 
             IsBussy = false;
-
-            if (!success) WeakReferenceMessenger.Default.Send(new LoginMessage(false, "Login failed"));
-            else WeakReferenceMessenger.Default.Send(new LoginMessage(true, "Login successful"));
         }
     }
 }
