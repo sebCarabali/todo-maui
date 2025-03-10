@@ -40,6 +40,7 @@ public static class MauiProgram
 
         // Register views
         builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddTransient<HomePage>();
 
         // Register SecureStorage
         builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);

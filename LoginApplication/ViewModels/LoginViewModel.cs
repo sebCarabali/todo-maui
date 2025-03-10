@@ -15,9 +15,9 @@ namespace LoginApplication.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string userName;
+        private string _email;
         [ObservableProperty]
-        private string password;
+        private string _password;
 
         [ObservableProperty]
         private bool _isBussy = false;
@@ -45,12 +45,12 @@ namespace LoginApplication.ViewModels
 
             try
             {
-                var request = new LoginRequestDTO { Identificacion = UserName, Contrasenia = Password };
+                var request = new LoginRequestDTO { Correo = Email, Contrasenia = Password };
                 bool isSuccess = await _authService.LoginAsync(request);
 
                 if (isSuccess)
                 {
-                    WeakReferenceMessenger.Default.Send(new LoginMessage(true, "Login successful"));
+                    await Shell.Current.GoToAsync("/home");
                 }
             }
             catch (UnauthorizedAccessException ex)
