@@ -13,5 +13,7 @@
             HorizontalOptions="Center"
             Text="Lets go!!!!"
             VerticalOptions="Center" />
+
+        <Button Clicked="OnLogout" Text="Logout" />
     </VerticalStackLayout>
 </ContentPage>
