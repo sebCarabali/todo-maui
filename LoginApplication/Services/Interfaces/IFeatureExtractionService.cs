@@ -1,4 +1,5 @@
-﻿using LoginApplication.Models;
+﻿using LoginApplication.Dtos;
+using LoginApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IFeatureExtractionService
     {
-        Task<FeatureVector> ExtractFeaturesAsync(Stream compressedImage);
+        Task<string> ExtractFeaturesAsync(Stream image);
+
+        Task<double> CompareFeatureAsync(string encodingFeature, Stream image);
     }
 }

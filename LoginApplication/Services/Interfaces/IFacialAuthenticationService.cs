@@ -9,6 +9,6 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IFacialAuthenticationService
     {
-        public Task<Boolean> AuthenticateAsync(FeatureVector featureVector);
+        Task<Boolean> AuthenticateAsync(string identificacion, Stream image);
     }
 }

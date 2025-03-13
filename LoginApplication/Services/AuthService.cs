@@ -1,7 +1,9 @@
-﻿using LoginApplication.Dtos;
+﻿using LoginApplication.Config;
+using LoginApplication.Dtos;
 using LoginApplication.Services.Interfaces;
 using LoginApplication.Utils;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,31 +17,24 @@ namespace LoginApplication.Services
     {
         private readonly HttpClient _httpClient;
         private readonly ISecureStorage _secureStorage;
-        private readonly string _keySecApi;
-        private readonly string _apiBaseUrl;
-        private readonly string _basicAuthToken;
-        private readonly string _userPublicApi;
-        private readonly string _passPublicApi;
+        private readonly AppSettings _appSettings;
 
-        public AuthService(ISecureStorage secureStorage, IConfiguration config)
+        public AuthService(ISecureStorage secureStorage, IOptions<AppSettings> appSettings)
         {
-            _httpClient = new HttpClient(); ;
+            _httpClient = new HttpClient();
             _secureStorage = secureStorage;
-            _keySecApi = config["KEY_SEC_API"] ?? "";
-            _apiBaseUrl = config["API_BASE_URL"] ?? "";
-            _userPublicApi = config["Usuario_Public_Api"] ?? "";
-            _passPublicApi = config["Contrasena_Public_Api"] ?? "";
+            _appSettings = appSettings.Value;
         }
 
         public async Task<bool> LoginAsync(LoginRequestDTO request)
         {
-            var url = $"{_apiBaseUrl}api/Login";
+            var url = $"{_appSettings.BaseUrl}api/Login";
             var json = JsonConvert.SerializeObject(request);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             try
             {
-                var apiCredentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_userPublicApi}:{_passPublicApi}"));
+                var apiCredentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_appSettings.PublicUser}:{_appSettings.PublicPass}"));
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", apiCredentials);
                 var response = await _httpClient.PostAsync(url, content);
 
@@ -59,7 +54,7 @@ namespace LoginApplication.Services
 
                 // Decrypt the response
                 string encryptedResponse = await response.Content.ReadAsStringAsync();
-                LoginResponseDTO loginResponse = EncryptionUtils.Decrypt<LoginResponseDTO>(encryptedResponse, _keySecApi);
+                LoginResponseDTO loginResponse = EncryptionUtils.Decrypt<LoginResponseDTO>(encryptedResponse, _appSettings.Key);
 
                 // Save token in secure storage
                 await _secureStorage.SetAsync("JwtToken", loginResponse.Token);

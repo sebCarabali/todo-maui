@@ -1,5 +1,4 @@
 ﻿using LoginApplication.Dtos;
-using LoginApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace LoginApplication.Services.Interfaces
 {
-    public interface IAuthService
+    public interface IClienteService
     {
-        Task<Boolean> LoginAsync(LoginRequestDTO request);
+        Task<string> GetFeatureExtractionDataAsyncByIdentification(string identification);
+        Task<string> GetFeatureExtractionDataAsyncByEmail(string email);
     }
 }
