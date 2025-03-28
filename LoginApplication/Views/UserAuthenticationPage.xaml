@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LoginApplication.Views.UserAuthenticationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="">
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="20">
+
+        <!--  Header  -->
+        <Label
+            Grid.Row="0"
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Autenticar usuario" />
+
+        <!--  Identification Input  -->
+        <Frame
+            Grid.Row="1"
+            Padding="15,10"
+            BorderColor="LightGray"
+            CornerRadius="10">
+            <Entry
+                Keyboard="Email"
+                Placeholder="Ingrese email o número de identificación"
+                Text="{Binding Identifier}" />
+        </Frame>
+
+        <!--  Photo Preview  -->
+        <Grid
+            Grid.Row="2"
+            BackgroundColor="LightGray"
+            HorizontalOptions="Fill"
+            VerticalOptions="FillAndExpand">
+
+            <Image Aspect="AspectFill" Source="{Binding CapturedPhoto}" />
+
+            <Button
+                Margin="0,0,0,20"
+                Command="{Binding TakePhotoCommand}"
+                HorizontalOptions="Center"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Tomar foto"
+                VerticalOptions="End"
+                WidthRequest="200" />
+        </Grid>
+
+        <!--  Action Buttons  -->
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10">
+
+            <Button
+                Grid.Column="0"
+                BackgroundColor="LightGray"
+                Command="{Binding GoBackCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Volver"
+                TextColor="Black" />
+
+            <Button
+                Grid.Column="1"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding AuthenticateCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Text="Autenticar"
+                TextColor="White" />
+        </Grid>
+
+        <ActivityIndicator IsRunning="{Binding IsBussy}" IsVisible="{Binding IsBussy}" />
+    </Grid>
+</ContentPage>

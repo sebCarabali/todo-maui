@@ -4,16 +4,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="HomePage">
-    <VerticalStackLayout>
-        <Label
+    <!--  Contenido principal  -->
+    <Grid>
+        <!--  Espacio para la imagen capturada  -->
+        <Image
+            Aspect="AspectFill"
+            HeightRequest="300"
             HorizontalOptions="Center"
-            Text="Welcome to the Home page"
-            VerticalOptions="Center" />
-        <Label
-            HorizontalOptions="Center"
-            Text="Lets go!!!!"
-            VerticalOptions="Center" />
+            Source="{Binding CapturedImage}"
+            VerticalOptions="Center"
+            WidthRequest="300" />
 
-        <Button Clicked="OnLogout" Text="Logout" />
-    </VerticalStackLayout>
+        <!--  Botones en la parte inferior  -->
+        <Grid Margin="20" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Botón para registrar usuario  -->
+            <Button
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                BackgroundColor="#2196F3"
+                Command="{Binding RegisterUserCommand}"
+                Text="Registrar Usuario"
+                TextColor="White" />
+
+            <!--  Botón para autorizar usuario  -->
+            <Button
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                BackgroundColor="#4CAF50"
+                Command="{Binding TakePhotoCommand}"
+                Text="Autorizar Usuario"
+                TextColor="White" />
+        </Grid>
+    </Grid>
 </ContentPage>

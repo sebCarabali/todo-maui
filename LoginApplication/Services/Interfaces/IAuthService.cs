@@ -1,5 +1,4 @@
 ﻿using LoginApplication.Dtos;
-using LoginApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,6 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IAuthService
     {
-        public Task<Boolean> LoginAsync(LoginRequestDTO request);
+        Task<Boolean> LoginAsync(LoginRequestDTO request);
     }
 }

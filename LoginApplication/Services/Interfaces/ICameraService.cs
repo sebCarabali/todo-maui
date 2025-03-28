@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoginApplication.Models
+namespace LoginApplication.Services.Interfaces
 {
-    public class FeatureVector
+    public interface ICameraService
     {
-        public required List<double> Features { get; set; }
+        Task<Stream> CapturePhotoAsync();
     }
 }

@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace LoginApplication.Services.Interfaces
 {
-    public interface IFeatureExtractionService
+    public interface IClienteService
     {
-        Task<string> ExtractFeaturesAsync(Stream image);
-
-        Task<double> CompareFeatureAsync(string encodingFeature, Stream image);
+        Task<string> GetEncodingAsync(string identifier);
+        Task<bool> SetEncodingAsync(string identifier, byte[] photoBytes);
     }
 }
