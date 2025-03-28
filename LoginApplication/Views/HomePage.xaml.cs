@@ -8,7 +8,7 @@ namespace LoginApplication.Views;
 
 public partial class HomePage : ContentPage
 {
-    public HomePage(UserValidationViewModel vm)
+    public HomePage(UserAuthenticationViewModel vm)
     {
         BindingContext = vm;
         InitializeComponent();

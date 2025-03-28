@@ -20,11 +20,11 @@ namespace LoginApplication.Services
             _clienteService = clienteService ?? throw new ArgumentNullException(nameof(clienteService));
         }
 
-        public async Task<bool> AuthenticateAsync(string criteria, Stream image)
+        public async Task<bool> AuthenticateAsync(string identifier, Stream image)
         {
-            if (string.IsNullOrWhiteSpace(criteria))
+            if (string.IsNullOrWhiteSpace(identifier))
             {
-                throw new ArgumentException("El criterio no puede estar vacío o ser nulo.", nameof(criteria));
+                throw new ArgumentException("El criterio no puede estar vacío o ser nulo.", nameof(identifier));
             }
 
             if (image == null)
@@ -34,39 +34,21 @@ namespace LoginApplication.Services
 
             try
             {
-                var featureExtractionData = await GetFeatureDataWithId(criteria);
+                var encoding = await _clienteService.GetEncodingAsync(identifier);
 
-                if (featureExtractionData == null)
+                if (encoding == null)
                 {
                     throw new ApplicationException("No se encuentra el vector de características con los datos proporcionados.");
                 }
 
-                var similarity = await _featureExtractionService.CompareFeatureAsync(featureExtractionData, image);
-                return similarity < 0.15;
+                var similarity = await _featureExtractionService.CompareFeatureAsync(encoding, image);
+                return similarity < 0.40;
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error durante la autenticación facial.", ex);
+                throw new ApplicationException($"Error durante la autenticación facial: {ex.Message}", ex);
             }
         }
 
-        private async Task<string> GetFeatureDataWithId(string criteria)
-        {
-            if (IsValidEmail(criteria))
-            {
-                return await _clienteService.GetFeatureExtractionDataAsyncByEmail(criteria);
-            }
-
-            return await _clienteService.GetFeatureExtractionDataAsyncByIdentification(criteria);
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
-            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
-        }
     }
 }

@@ -9,7 +9,7 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IClienteService
     {
-        Task<string> GetFeatureExtractionDataAsyncByIdentification(string identification);
-        Task<string> GetFeatureExtractionDataAsyncByEmail(string email);
+        Task<string> GetEncodingAsync(string identifier);
+        Task<bool> SetEncodingAsync(string identifier, byte[] photoBytes);
     }
 }

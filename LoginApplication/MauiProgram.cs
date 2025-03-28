@@ -63,14 +63,15 @@ public static class MauiProgram
 
         // Register view models
         builder.Services.AddTransient<LoginViewModel>();
-        builder.Services.AddTransient<UserValidationViewModel>();
-        builder.Services.AddTransient<UserRegistryViewModel>();
+        builder.Services.AddTransient<UserAuthenticationViewModel>();
+        builder.Services.AddTransient<UserRegistrationViewModel>();
 
         // Register views
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<HomePage>();
-        builder.Services.AddTransient<UserRegistryPage>();
-        builder.Services.AddTransient<UserValidationPage>();
+        builder.Services.AddTransient<UserAuthenticationPage>();
+        builder.Services.AddTransient<UserRegistrationPage>();
+        builder.Services.AddTransient<DashboardPage>();
 
         // Register SecureStorage
         builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);

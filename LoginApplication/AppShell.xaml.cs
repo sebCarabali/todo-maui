@@ -7,7 +7,9 @@ namespace LoginApplication
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("home", typeof(HomePage));
+            Routing.RegisterRoute("dashboard", typeof(DashboardPage));
+            Routing.RegisterRoute("user-auth", typeof(UserAuthenticationPage));
+            Routing.RegisterRoute("user-singup", typeof(UserRegistrationPage));
             Routing.RegisterRoute("login", typeof(LoginPage));
         }
     }

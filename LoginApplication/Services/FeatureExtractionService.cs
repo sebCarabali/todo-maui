@@ -1,15 +1,14 @@
-﻿using LoginApplication.Config;
-using LoginApplication.Dtos;
-using LoginApplication.ImageProcessing;
-using LoginApplication.Models;
-using LoginApplication.Services.Interfaces;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LoginApplication.Config;
+using LoginApplication.Dtos;
+using LoginApplication.ImageProcessing;
+using LoginApplication.Services.Interfaces;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace LoginApplication.Services
 {
@@ -25,11 +24,14 @@ namespace LoginApplication.Services
         public FeatureExtractionService(
             ImageOptimizer imageOptimizer,
             IOptionsSnapshot<Endpoints> endpoints,
-            IOptionsSnapshot<AppSettings> appSettings)
+            IOptionsSnapshot<AppSettings> appSettings
+        )
         {
-            _imageOptimizer = imageOptimizer ?? throw new ArgumentNullException(nameof(imageOptimizer));
+            _imageOptimizer =
+                imageOptimizer ?? throw new ArgumentNullException(nameof(imageOptimizer));
             _endpoints = endpoints.Value ?? throw new ArgumentNullException(nameof(endpoints));
-            _appSettings = appSettings.Value ?? throw new ArgumentNullException(nameof(appSettings));
+            _appSettings =
+                appSettings.Value ?? throw new ArgumentNullException(nameof(appSettings));
 
             ConfigureHttpClient();
         }
@@ -38,7 +40,10 @@ namespace LoginApplication.Services
         {
             if (string.IsNullOrWhiteSpace(encoding))
             {
-                throw new ArgumentException("El encoding no puede estar vacío o ser nulo.", nameof(encoding));
+                throw new ArgumentException(
+                    "El encoding no puede estar vacío o ser nulo.",
+                    nameof(encoding)
+                );
             }
 
             if (image == null)
@@ -59,7 +64,9 @@ namespace LoginApplication.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new HttpRequestException($"Error al llamar a la API de extracción: {response.StatusCode}");
+                    throw new HttpRequestException(
+                        $"Error al llamar a la API de extracción: {response.StatusCode}"
+                    );
                 }
 
                 var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -67,14 +74,19 @@ namespace LoginApplication.Services
 
                 if (data == null)
                 {
-                    throw new InvalidOperationException("La respuesta de la API no pudo ser deserializada.");
+                    throw new InvalidOperationException(
+                        "La respuesta de la API no pudo ser deserializada."
+                    );
                 }
 
                 return data.Data;
             }
             catch (HttpRequestException ex)
             {
-                throw new ApplicationException("Error al llamar a la API de extracción de características.", ex);
+                throw new ApplicationException(
+                    "Error al llamar a la API de extracción de características.",
+                    ex
+                );
             }
             catch (Exception ex)
             {
@@ -96,7 +108,10 @@ namespace LoginApplication.Services
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error al extraer características de la imagen.", ex);
+                throw new ApplicationException(
+                    "Error al extraer características de la imagen.",
+                    ex
+                );
             }
         }
 
@@ -114,26 +129,37 @@ namespace LoginApplication.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new HttpRequestException($"Error calling the feature extraction API: {response.StatusCode}");
+                    throw new HttpRequestException(
+                        $"Error calling the feature extraction API: {response.StatusCode}"
+                    );
                 }
 
-                return await response.Content.ReadAsStringAsync();
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+
+                var apiResponse = JsonConvert.DeserializeObject<EncodingFileApiResponse>(jsonResponse);
+
+                return apiResponse?.Data;
             }
             catch (HttpRequestException ex)
             {
-                throw new ApplicationException("Error al llamar a la API de extracción de características.", ex);
+                throw new ApplicationException(
+                    "Error al llamar a la API de extracción de características.",
+                    ex
+                );
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error inesperado al llamar a la API de extracción de características.", ex);
+                throw new ApplicationException(
+                    "Error inesperado al llamar a la API de extracción de características.",
+                    ex
+                );
             }
         }
 
         private void ConfigureHttpClient()
         {
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }

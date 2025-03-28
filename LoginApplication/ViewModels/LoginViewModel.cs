@@ -25,10 +25,28 @@ namespace LoginApplication.ViewModels
         public bool IsNotBussy => !IsBussy;
 
         private readonly IAuthService _authService;
-
-        public LoginViewModel(IAuthService authService)
+        private readonly ISecureStorage _secureStorage;
+        public LoginViewModel(IAuthService authService, ISecureStorage secureStorage)
         {
             _authService = authService;
+            _secureStorage = secureStorage;
+            CheckLoginStateAsync();
+        }
+
+        public async void CheckLoginStateAsync()
+        {
+            try
+            {
+                var token = await _secureStorage.GetAsync("jwtToken");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    await Shell.Current.GoToAsync("dashboard");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking token: {ex.Message}");
+            }
         }
 
         partial void OnIsBussyChanged(bool value)
@@ -50,7 +68,7 @@ namespace LoginApplication.ViewModels
 
                 if (isSuccess)
                 {
-                    await Shell.Current.GoToAsync("/home");
+                    await Shell.Current.GoToAsync("dashboard");
                 }
             }
             catch (UnauthorizedAccessException ex)

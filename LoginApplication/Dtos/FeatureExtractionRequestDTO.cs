@@ -11,6 +11,13 @@ using System.Text.Json.Serialization;
 namespace LoginApplication.Dtos
 {
 
+    public class EncodingFileApiResponse
+    {
+        public bool Exito { get; set; }
+        public string Data { get; set; }
+        public List<string> Mensajes { get; set; }
+    }
+
     public class EncodingData
     {
         [JsonProperty("encoding")]

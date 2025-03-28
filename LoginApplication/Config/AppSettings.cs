@@ -25,6 +25,8 @@ namespace LoginApplication.Config
         public string GetEncodingFile { get; set; }
 
         public string ValidateEncoding { get; set; }
+
+        public string SaveEncoding { get; set; }
     }
 
     public class ImageOptimization
