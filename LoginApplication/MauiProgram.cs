@@ -13,20 +13,19 @@ namespace LoginApplication;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         // Load appsettings.json
@@ -50,8 +49,8 @@ public static class MauiProgram
         builder.Services.Configure<Endpoints>(configuration.GetSection("Endpoints"));
         builder.Services.Configure<ImageOptimization>(configuration.GetSection("ImageOptimization"));
 
-        // Register configuration
-
+        // Register httpclient
+        builder.Services.AddHttpClient();
 
         // Register services
         builder.Services.AddScoped<IAuthService, AuthService>();
@@ -60,6 +59,7 @@ public static class MauiProgram
         builder.Services.AddScoped<IClienteService, ClienteService>();
         builder.Services.AddScoped<IFacialAuthenticationService, FacialAuthenticationService>();
         builder.Services.AddScoped<IFeatureExtractionService, FeatureExtractionService>();
+        builder.Services.AddScoped<IRegistroAccesoService, RegistroAccesoService>();
 
         // Register view models
         builder.Services.AddTransient<LoginViewModel>();
@@ -77,5 +77,5 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
 
         return builder.Build();
-	}
+    }
 }
