@@ -65,7 +65,7 @@
             <Button
                 Grid.Column="1"
                 BackgroundColor="{StaticResource Primary}"
-                Command="{Binding SingUpCommand}"
+                Command="{Binding SignUpCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Text="Registrar"
                 TextColor="White" />

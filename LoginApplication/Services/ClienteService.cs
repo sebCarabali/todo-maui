@@ -138,12 +138,12 @@ namespace LoginApplication.Services
 
             try
             {
-                var encoding = await _featureExtractionService.ExtractFeaturesAsync(new MemoryStream(photoBytes));
+                var extractionResponse = await _featureExtractionService.ExtractFeaturesAsync(new MemoryStream(photoBytes));
 
                 var request = new SetEncodingRequest
                 {
                     Identificador = identifier,
-                    Encoding = encoding
+                    Encoding = extractionResponse.Encoding
                 };
 
                 var jsonRequest = System.Text.Json.JsonSerializer.Serialize(request);

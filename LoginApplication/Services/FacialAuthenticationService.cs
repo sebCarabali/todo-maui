@@ -41,8 +41,8 @@ namespace LoginApplication.Services
                     throw new ApplicationException("No se encuentra el vector de características con los datos proporcionados.");
                 }
 
-                var similarity = await _featureExtractionService.CompareFeatureAsync(encoding, image);
-                return similarity < 0.40;
+                var response = await _featureExtractionService.CompareFeatureAsync(encoding, image);
+                return response.Score < 0.40;
             }
             catch (Exception ex)
             {

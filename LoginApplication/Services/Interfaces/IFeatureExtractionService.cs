@@ -9,8 +9,8 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IFeatureExtractionService
     {
-        Task<string> ExtractFeaturesAsync(Stream image);
+        Task<(string Encoding, string Message)> ExtractFeaturesAsync(Stream image);
 
-        Task<double> CompareFeatureAsync(string encodingFeature, Stream image);
+        Task<(double Score, string Message)> CompareFeatureAsync(string encodingFeature, Stream image);
     }
 }

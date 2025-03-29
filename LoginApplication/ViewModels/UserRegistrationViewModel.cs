@@ -9,119 +9,44 @@ using System.Threading.Tasks;
 
 namespace LoginApplication.ViewModels
 {
-    [ObservableObject]
-    public partial class UserRegistrationViewModel
+    public partial class UserRegistrationViewModel : UserBaseViewModel
     {
-        private readonly ICameraService _cameraService;
+        
         private readonly IClienteService _clienteService;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-        private bool _isBusy = false;
-
-        [ObservableProperty]
-        private string _identifier;
-
-        [ObservableProperty]
-        private ImageSource _capturedPhoto;
-
-        [ObservableProperty]
-        private byte[] _photoBytes;
-
-        public bool IsNotBusy => !IsBusy;
-
-        public UserRegistrationViewModel(ICameraService cameraService, IClienteService clienteService)
+        public UserRegistrationViewModel(ICameraService cameraService, IClienteService clienteService) 
+            : base(cameraService)
         {
-            _cameraService = cameraService;
             _clienteService = clienteService;
         }
 
         [RelayCommand]
-        public async Task TakePhoto()
+        public async Task SignUp() =>
+            await HandleSubmitAsync(PerformSignUp);
+
+        private async Task PerformSignUp()
         {
-            if (IsBusy) return;
+            ValidateInputs();
 
-            try
-            {
-                IsBusy = true;
-                CapturedPhoto = null;
-                PhotoBytes = null;
+            var success = await _clienteService.SetEncodingAsync(Identifier, PhotoBytes!);
 
-                var photoStream = await _cameraService.CapturePhotoAsync();
-                if (photoStream == null) return;
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    await photoStream.CopyToAsync(memoryStream);
-                    PhotoBytes = memoryStream.ToArray();
-                }
-                photoStream.Position = 0;
-
-                CapturedPhoto = ImageSource.FromStream(() =>
-                {
-                    return new MemoryStream(PhotoBytes);
-                });
-
-                photoStream.Dispose();
-            }
-            catch (Exception ex)
+            if (success)
             {
-                await Shell.Current.DisplayAlert("Error", $"Failed to capture photo: {ex.Message}", "OK");
+                await ShowAlertAsync("¡Registro exitoso!",
+                    "Perfil biométrico creado correctamente.\n\n" +
+                    "Datos registrados:\n" +
+                    $"• Identificador: {Identifier}\n" +
+                    $"• Fecha: {DateTime.Now:dd/MM/yyyy}\n\n" +
+                    "Ya puede autenticarse usando reconocimiento facial.");
             }
-            finally
+            else
             {
-                IsBusy = false;
-            }
-        }
-
-        [RelayCommand]
-        public async Task SingUp()
-        {
-            if (IsBusy) return;
-            if (string.IsNullOrWhiteSpace(Identifier))
-            {
-                await Shell.Current.DisplayAlert("Error", "Please enter your identification or email", "OK");
-                return;
-            }
-            if (PhotoBytes == null || PhotoBytes.Length == 0)
-            {
-                await Shell.Current.DisplayAlert("Error", "Please take a photo first", "OK");
-                return;
-            }
-
-            try
-            {
-                IsBusy = true;
-
-                await DoSingUpAsync();
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", $"Authentication error: {ex.Message}", "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private async Task DoSingUpAsync()
-        {
-            try
-            {
-                var success = await _clienteService.SetEncodingAsync(Identifier, PhotoBytes);
-                if (success)
-                {
-                    await Shell.Current.DisplayAlert("Success", "User registered successfully", "OK");
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", "Failed to register user", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", $"Failed to register user: {ex.Message}", "OK");
+                await ShowAlertAsync("Registro incompleto",
+                    "El servidor no pudo procesar su registro.\n\n" +
+                    "Por favor:\n" +
+                    "1. Verifique su conexión a internet\n" +
+                    "2. Intente con otra fotografía\n" +
+                    "3. Contacte a soporte si persiste el error");
             }
         }
     }
