@@ -4,73 +4,142 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="">
-    <Grid
-        Padding="20"
-        RowDefinitions="Auto,Auto,*,Auto"
-        RowSpacing="20">
-
-        <!--  Header  -->
-        <Label
-            Grid.Row="0"
-            FontAttributes="Bold"
-            FontSize="24"
-            HorizontalOptions="Center"
-            Text="Registrar usuario" />
-
-        <!--  Identification Input  -->
-        <Frame
-            Grid.Row="1"
-            Padding="15,10"
-            BorderColor="LightGray"
-            CornerRadius="10">
-            <Entry
-                Keyboard="Email"
-                Placeholder="Ingrese email o número de identificación"
-                Text="{Binding Identifier}" />
-        </Frame>
-
-        <!--  Photo Preview  -->
+    <ScrollView>
         <Grid
-            Grid.Row="2"
-            BackgroundColor="LightGray"
-            HorizontalOptions="Fill"
-            VerticalOptions="FillAndExpand">
+            Padding="20"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
+            RowSpacing="15">
 
-            <Image Aspect="AspectFill" Source="{Binding CapturedPhoto}" />
-
-            <Button
-                Margin="0,0,0,20"
-                Command="{Binding TakePhotoCommand}"
+            <!-- Header -->
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="24"
                 HorizontalOptions="Center"
-                IsEnabled="{Binding IsNotBusy}"
-                Text="Tomar foto"
-                VerticalOptions="End"
-                WidthRequest="200" />
-        </Grid>
+                Text="Registrar usuario" />
 
-        <!--  Action Buttons  -->
-        <Grid
-            Grid.Row="3"
-            ColumnDefinitions="*,*"
-            ColumnSpacing="10">
+            <!-- Identification Input -->
+            <Frame
+                Grid.Row="1"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Placeholder="Número de identificación"
+                    Text="{Binding Identificacion}" />
+            </Frame>
 
-            <Button
-                Grid.Column="0"
+            <!-- Email Input -->
+            <Frame
+                Grid.Row="2"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Keyboard="Email"
+                    Placeholder="Correo electrónico"
+                    Text="{Binding Correo}" />
+            </Frame>
+
+            <!-- Phone Input -->
+            <Frame
+                Grid.Row="3"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="Número de celular"
+                    Text="{Binding Celular}" />
+            </Frame>
+
+            <!-- First Name Input -->
+            <Frame
+                Grid.Row="4"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Placeholder="Primer nombre"
+                    Text="{Binding PrimerNombre}" />
+            </Frame>
+
+            <!-- Second Name Input -->
+            <Frame
+                Grid.Row="5"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Placeholder="Segundo nombre"
+                    Text="{Binding SegundoNombre}" />
+            </Frame>
+
+            <!-- First Last Name Input -->
+            <Frame
+                Grid.Row="6"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Placeholder="Primer apellido"
+                    Text="{Binding PrimerApellido}" />
+            </Frame>
+
+            <!-- Second Last Name Input -->
+            <Frame
+                Grid.Row="7"
+                Padding="15,10"
+                BorderColor="LightGray"
+                CornerRadius="10">
+                <Entry
+                    Placeholder="Segundo apellido"
+                    Text="{Binding SegundoApellido}" />
+            </Frame>
+
+            <!-- Photo Preview -->
+            <Grid
+                Grid.Row="8"
                 BackgroundColor="LightGray"
-                Command="{Binding GoBackCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Text="Volver"
-                TextColor="Black" />
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand">
 
-            <Button
-                Grid.Column="1"
-                BackgroundColor="{StaticResource Primary}"
-                Command="{Binding SignUpCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Text="Registrar"
-                TextColor="White" />
+                <Image Aspect="AspectFill" Source="{Binding CapturedPhoto}" />
+
+                <Button
+                    Margin="0,0,0,20"
+                    Command="{Binding TakePhotoCommand}"
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Text="Tomar foto"
+                    VerticalOptions="End"
+                    WidthRequest="200" />
+            </Grid>
+
+            <!-- Action Buttons -->
+            <Grid
+                Grid.Row="9"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
+
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="LightGray"
+                    Command="{Binding GoBackCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Text="Volver"
+                    TextColor="Black" />
+
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding SignUpCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Text="Registrar"
+                    TextColor="White" />
+            </Grid>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
         </Grid>
-
-        <ActivityIndicator IsRunning="{Binding IsBussy}" IsVisible="{Binding IsBussy}" />
-    </Grid>
+    </ScrollView>
 </ContentPage>

@@ -9,46 +9,30 @@ namespace LoginApplication.Services
 {
     public class FacialAuthenticationService : IFacialAuthenticationService
     {
-        private readonly IFeatureExtractionService _featureExtractionService;
         private readonly IClienteService _clienteService;
 
         public FacialAuthenticationService(
-            IFeatureExtractionService featureExtractionService,
             IClienteService clienteService)
         {
-            _featureExtractionService = featureExtractionService ?? throw new ArgumentNullException(nameof(featureExtractionService));
             _clienteService = clienteService ?? throw new ArgumentNullException(nameof(clienteService));
         }
 
-        public async Task<bool> AuthenticateAsync(string identifier, Stream image)
+        public async Task<FacialAuthResponseDTO> AuthenticateAsync(Stream image)
         {
-            if (string.IsNullOrWhiteSpace(identifier))
-            {
-                throw new ArgumentException("El criterio no puede estar vacío o ser nulo.", nameof(identifier));
-            }
-
-            if (image == null)
-            {
-                throw new ArgumentNullException(nameof(image), "La imagen no puede ser nula.");
-            }
-
             try
             {
-                var encoding = await _clienteService.GetEncodingAsync(identifier);
-
-                if (encoding == null)
+                if (image == null)
                 {
-                    throw new ApplicationException("No se encuentra el vector de características con los datos proporcionados.");
+                    throw new ArgumentNullException(nameof(image));
                 }
 
-                var response = await _featureExtractionService.CompareFeatureAsync(encoding, image);
-                return response.Score < 0.40;
+                var authResponse = await _clienteService.Authenticate(image);
+                return authResponse;
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error durante la autenticación facial: {ex.Message}", ex);
+                throw;
             }
         }
-
     }
 }

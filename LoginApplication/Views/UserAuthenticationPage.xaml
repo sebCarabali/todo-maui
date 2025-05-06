@@ -17,7 +17,7 @@
             HorizontalOptions="Center"
             Text="Autenticar usuario" />
 
-        <!--  Identification Input  -->
+        <!--  Identification Input
         <Frame
             Grid.Row="1"
             Padding="15,10"
@@ -27,7 +27,7 @@
                 Keyboard="Email"
                 Placeholder="Ingrese email o número de identificación"
                 Text="{Binding Identifier}" />
-        </Frame>
+        </Frame>  -->
 
         <!--  Photo Preview  -->
         <Grid

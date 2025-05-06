@@ -93,9 +93,6 @@ namespace LoginApplication.ViewModels
 
         protected virtual void ValidateInputs()
         {
-            if (string.IsNullOrWhiteSpace(Identifier))
-                throw new InvalidOperationException("Por favor ingrese su identificación o correo electrónico");
-
             if (PhotoBytes == null || PhotoBytes.Length == 0)
                 throw new InvalidOperationException("Por favor tome una fotografía primero");
         }

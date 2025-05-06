@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LoginApplication.Dtos;
 using LoginApplication.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,27 @@ namespace LoginApplication.ViewModels
     {
         
         private readonly IClienteService _clienteService;
+
+        [ObservableProperty]
+        private string _Identificacion;
+
+        [ObservableProperty]
+        private string _Correo;
+
+        [ObservableProperty]
+        private string _Celular;
+
+        [ObservableProperty]
+        private string _PrimerNombre;
+
+        [ObservableProperty]
+        private string _SegundoNombre;
+
+        [ObservableProperty]
+        private string _PrimerApellido;
+
+        [ObservableProperty]
+        private string _SegundoApellido;
 
         public UserRegistrationViewModel(ICameraService cameraService, IClienteService clienteService) 
             : base(cameraService)
@@ -28,14 +50,25 @@ namespace LoginApplication.ViewModels
         {
             ValidateInputs();
 
-            var success = await _clienteService.SetEncodingAsync(Identifier, PhotoBytes!);
-
-            if (success)
+            var cliente = new Cliente
             {
-                await ShowAlertAsync("¡Registro exitoso!",
+                identificacion = Identificacion,
+                primer_nombre = PrimerNombre,
+                segundo_nombre = SegundoNombre,
+                primer_apellido = PrimerApellido,
+                segundo_apellido = SegundoApellido,
+                correo = Correo,
+                celular = Celular
+            };
+
+            var result = await _clienteService.AgregarCliente(cliente, new MemoryStream(PhotoBytes)!);
+
+            if (result != null)
+            {
+                await ShowAlertAsync($"¡Registro exitoso!, {PrimerNombre}",
                     "Perfil biométrico creado correctamente.\n\n" +
                     "Datos registrados:\n" +
-                    $"• Identificador: {Identifier}\n" +
+                    $"• Identificador: {Identificacion}\n" +
                     $"• Fecha: {DateTime.Now:dd/MM/yyyy}\n\n" +
                     "Ya puede autenticarse usando reconocimiento facial.");
             }

@@ -19,16 +19,18 @@ namespace LoginApplication.Config
     public class Endpoints
     {
         public string Login { get; set; }
-        public string EncodingByIdentification { get; set; }
+        public string Authenticate { get; set; }
         public string EncodingByEmail { get; set; }
 
         public string GetEncodingFile { get; set; }
 
         public string ValidateEncoding { get; set; }
 
-        public string SaveEncoding { get; set; }
+        public string UpdateEncoding { get; set; }
 
         public string SaveAccessLog { get; set; }
+
+        public string AddClient { get; set; }
     }
 
     public class ImageOptimization

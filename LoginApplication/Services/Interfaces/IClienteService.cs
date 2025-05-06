@@ -9,7 +9,8 @@ namespace LoginApplication.Services.Interfaces
 {
     public interface IClienteService
     {
-        Task<string> GetEncodingAsync(string identifier);
-        Task<bool> SetEncodingAsync(string identifier, byte[] photoBytes);
+        Task<Cliente> AgregarCliente(Cliente cliente, Stream photoBytes);
+
+        Task<FacialAuthResponseDTO> Authenticate(Stream photo);
     }
 }

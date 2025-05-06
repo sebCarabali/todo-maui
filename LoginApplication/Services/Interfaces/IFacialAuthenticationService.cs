@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LoginApplication.Dtos;
 
 namespace LoginApplication.Services.Interfaces
 {
     public interface IFacialAuthenticationService
     {
-        Task<Boolean> AuthenticateAsync(string identificacion, Stream image);
+        Task<FacialAuthResponseDTO> AuthenticateAsync(Stream image);
     }
 }

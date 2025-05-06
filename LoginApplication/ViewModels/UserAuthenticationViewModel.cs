@@ -30,11 +30,11 @@ namespace LoginApplication.ViewModels
             ValidateInputs();
 
             using var photoStream = new MemoryStream(PhotoBytes!);
-            bool authenticated = await _facialAuthenticationService.AuthenticateAsync(Identifier, photoStream);
+            var authResult = await _facialAuthenticationService.AuthenticateAsync(photoStream);
 
-            if (authenticated)
+            if (authResult.IsAuthenticated)
             {
-                await ShowAlertAsync("¡Bienvenido!",
+                await ShowAlertAsync($"¡Bienvenido!, {authResult.Cliente.primer_nombre}",
                     "Autenticación biométrica exitosa.\n\n" +
                     "Acceso concedido.");
 
