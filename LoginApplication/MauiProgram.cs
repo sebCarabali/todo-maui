@@ -1,4 +1,4 @@
-﻿using LoginApplication.Config;
+using LoginApplication.Config;
 using LoginApplication.ImageProcessing;
 using LoginApplication.Services;
 using LoginApplication.Services.Interfaces;

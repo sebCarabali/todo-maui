@@ -1,12 +1,15 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using LoginApplication.Dtos;
+using LoginApplication.Exceptions;
 using LoginApplication.Messages;
 using LoginApplication.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,10 +29,16 @@ namespace LoginApplication.ViewModels
 
         private readonly IAuthService _authService;
         private readonly ISecureStorage _secureStorage;
-        public LoginViewModel(IAuthService authService, ISecureStorage secureStorage)
+        private readonly ILogger<LoginViewModel> _logger;
+        
+        public LoginViewModel(
+            IAuthService authService, 
+            ISecureStorage secureStorage,
+            ILogger<LoginViewModel> logger)
         {
             _authService = authService;
             _secureStorage = secureStorage;
+            _logger = logger;
             CheckLoginStateAsync();
         }
 
@@ -57,9 +66,14 @@ namespace LoginApplication.ViewModels
         [RelayCommand]
         private async void Login()
         {
-            if (IsBussy) return;
+            if (IsBussy) 
+            {
+                _logger.LogInformation("Intento de inicio de sesión mientras ya hay una operación en curso");
+                return;
+            }
 
             IsBussy = true;
+            _logger.LogInformation("Iniciando proceso de login para el email: {Email}", Email);
 
             try
             {
@@ -68,23 +82,48 @@ namespace LoginApplication.ViewModels
 
                 if (isSuccess)
                 {
+                    _logger.LogInformation("Login exitoso, navegando al dashboard");
                     await Shell.Current.GoToAsync("dashboard");
                 }
             }
-            catch (UnauthorizedAccessException ex)
+            catch (AppUnauthorizedException ex)
             {
+                _logger.LogWarning(ex, "Error de autenticación");
                 WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+            }
+            catch (AppValidationException ex)
+            {
+                _logger.LogWarning("Error de validación: {Errors}", string.Join(", ", 
+                    ex.Errors.SelectMany(e => e.Value)));
+                
+                // Tomar el primer error para mostrar al usuario
+                var firstError = ex.Errors.FirstOrDefault();
+                var errorMessage = firstError.Value?.FirstOrDefault() ?? "Error de validación";
+                
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, errorMessage));
+            }
+            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.RequestTimeout)
+            {
+                _logger.LogError(ex, "Tiempo de espera agotado al intentar conectar con el servidor");
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, 
+                    "Tiempo de espera agotado. Por favor, verifica tu conexión a internet e inténtalo de nuevo."));
             }
             catch (HttpRequestException ex)
             {
-                WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+                _logger.LogError(ex, "Error de conexión");
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, 
+                    "No se pudo conectar con el servidor. Verifica tu conexión a internet."));
             }
             catch (Exception ex)
             {
-                WeakReferenceMessenger.Default.Send(new LoginMessage(false, ex.Message));
+                _logger.LogError(ex, "Error inesperado durante el inicio de sesión");
+                WeakReferenceMessenger.Default.Send(new LoginMessage(false, 
+                    "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde."));
             }
-
-            IsBussy = false;
+            finally
+            {
+                IsBussy = false;
+            }
         }
     }
 }
